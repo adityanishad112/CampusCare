@@ -6,6 +6,8 @@ import logging
 logger = logging.getLogger(__name__)
 
 db_url = settings.DATABASE_URL
+if db_url.startswith("postgres://"):
+    db_url = db_url.replace("postgres://", "postgresql://", 1)
 
 # Handle sqlite specific connection args
 connect_args = {}

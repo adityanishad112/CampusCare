@@ -17,11 +17,17 @@ from app.models.notification import Notification
 from app.models.duplicate_link import DuplicateLink
 
 def seed():
-    print("Seeding realistic fictional CampusCare database...")
-    Base.metadata.drop_all(bind=engine)
+    print("Ensuring database tables exist...")
     Base.metadata.create_all(bind=engine)
 
     db = SessionLocal()
+    existing_user = db.query(User).first()
+    if existing_user:
+        print("Database already contains records. Skipping seed.")
+        db.close()
+        return
+
+    print("Seeding initial data...")
 
     # 1. Departments
     dept_data = [

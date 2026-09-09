@@ -9,10 +9,13 @@ services:
   - type: web
     name: campuscare-backend
     runtime: docker
-    dockerfilePath: ./backend/Dockerfile
-    dockerContext: ./backend
+    dockerfilePath: Dockerfile
+    dockerContext: backend
     plan: free
+    healthCheckPath: /api/v1/health
     envVars:
+      - key: PORT
+        value: 10000
       - key: ENVIRONMENT
         value: production
       - key: DATABASE_URL
