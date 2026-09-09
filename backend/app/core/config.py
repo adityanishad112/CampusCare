@@ -7,9 +7,13 @@ class Settings(BaseSettings):
     VERSION: str = "1.0.0"
     API_V1_STR: str = "/api/v1"
     
-    SECRET_KEY: str = os.getenv("SECRET_KEY", "campuscare-super-secret-jwt-key-cse-2026-evaluation-xyz")
-    ALGORITHM: str = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24  # 24 hours
+    # JWT / Auth — reads SECRET_KEY or JWT_SECRET_KEY from env
+    SECRET_KEY: str = os.getenv(
+        "SECRET_KEY",
+        os.getenv("JWT_SECRET_KEY", "campuscare-super-secret-jwt-key-cse-2026-evaluation-xyz")
+    )
+    ALGORITHM: str = os.getenv("JWT_ALGORITHM", "HS256")
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "1440"))
     
     # Database
     BASE_DIR: str = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -24,14 +28,22 @@ class Settings(BaseSettings):
     # ML Models
     ML_ARTIFACTS_DIR: str = os.path.join(BASE_DIR, "ml", "model_artifacts")
     
-    # CORS
-    BACKEND_CORS_ORIGINS: List[str] = [
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        "*"
-    ]
+    # CORS — comma-separated list via env var, e.g. "https://myapp.onrender.com,http://localhost:5173"
+    @property
+    def BACKEND_CORS_ORIGINS(self) -> List[str]:
+        raw = os.getenv("CORS_ORIGINS", "")
+        if raw.strip() == "*":
+            return ["*"]
+        origins = [o.strip() for o in raw.split(",") if o.strip()]
+        if not origins:
+            # Local dev defaults
+            origins = [
+                "http://localhost:5173",
+                "http://127.0.0.1:5173",
+                "http://localhost:3000",
+                "http://127.0.0.1:3000",
+            ]
+        return origins
 
     class Config:
         case_sensitive = True
@@ -39,3 +51,4 @@ class Settings(BaseSettings):
 
 settings = Settings()
 os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
+
