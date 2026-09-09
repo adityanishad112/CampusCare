@@ -45,9 +45,9 @@ class ApiClient {
         const errorData = await response.json();
         errorMessage = errorData.detail || errorData.message || JSON.stringify(errorData);
       } catch {
-        errorMessage = response.statusText;
+        errorMessage = response.statusText || `HTTP ${response.status}: Request failed`;
       }
-      throw new Error(errorMessage);
+      throw new Error(errorMessage || "Failed to communicate with server. Please try again.");
     }
 
     return response.json();

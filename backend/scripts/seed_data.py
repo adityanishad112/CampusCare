@@ -21,13 +21,17 @@ def seed():
     Base.metadata.create_all(bind=engine)
 
     db = SessionLocal()
-    existing_user = db.query(User).first()
-    if existing_user:
-        print("Database already contains records. Skipping seed.")
+    complaints_count = db.query(Complaint).count()
+    if complaints_count >= 5:
+        print(f"Database already fully seeded with {complaints_count} complaints. Skipping seed.")
         db.close()
         return
 
-    print("Seeding initial data...")
+    print("Database needs seeding. Cleaning incomplete data and seeding fresh demo records...")
+    db.close()
+    Base.metadata.drop_all(bind=engine)
+    Base.metadata.create_all(bind=engine)
+    db = SessionLocal()
 
     # 1. Departments
     dept_data = [
