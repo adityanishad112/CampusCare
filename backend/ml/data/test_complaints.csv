@@ -1,0 +1,53 @@
+title,description,category
+Issue with sparking observed in main distribution board in block a,Attention maintenance team: Heard crackling sound and noticed burning smell near electrical switchboard on floor 2.,Electrical
+Urgent: Leaves and debris clogging rooftop drainage gutters,Reporting issue: Rooftop drains choked with dead leaves leading to rainwater accumulation. Please send someone to inspect.,Sanitation
+Urgent: Universal Testing Machine hydraulic pressure leak,Reporting issue: UTM in Civil Structures lab leaking hydraulic fluid around main piston. Please send someone to inspect.,Classroom and laboratory equipment
+Excessive noise from lawn mowers during final examinations,Landscaping maintenance scheduled directly outside Exam Hall 201 during test.,Other
+Issue with centrifuge vibrating violently in biotechnology lab,"Attention maintenance team: Benchtop centrifuge makes loud rattling noise above 2000 RPM, rotor unaligned.",Classroom and laboratory equipment
+Ethernet port dead at desk 14 in computer lab 2,RJ45 wall socket has no link light and does not assign IP address.,IT and Wi-Fi
+Issue with bicycle lock key snapped off in parking rack,"Attention maintenance team: Key broke inside U-lock at Department bicycle stand, cycle cannot be unlocked.",Other
+Tube lights flickering in Lecture Hall 203,Two tube lights near the front podium are flickering continuously causing eye strain.,Electrical
+Issue with eduroam authentication failing with university credentials,Attention maintenance team: Cannot log into Eduroam network despite password reset on central LDAP.,IT and Wi-Fi
+Oscilloscope channel 2 faulty in Electronics lab,Tektronix DSO channel 2 produces distorted waveform with high offset error.,Classroom and laboratory equipment
+Urgent: Wooden wardrobe door hinge detached,Reporting issue: Almirah door is hanging by one hinge and might fall off if opened. Please send someone to inspect.,Hostel maintenance
+Urgent: Ethernet port dead at desk 14 in computer lab 2,Reporting issue: RJ45 wall socket has no link light and does not assign IP address. Please send someone to inspect.,IT and Wi-Fi
+Emergency backup generator not kicking in during outage,Main computer centre had sudden shutdown when grid power failed; UPS alarm beeping.,Electrical
+Sewage odor emerging from bathroom floor drain,Trap water has dried out or sewer line is blocked behind Girls Hostel 2.,Plumbing
+Issue with ceiling fan regulator broken in room 108,Attention maintenance team: The fan knob has popped out and the fan is stuck at maximum speed.,Electrical
+Urgent: Low water pressure in 4th floor hostel showers,Reporting issue: Water barely trickles out of shower heads in Hostel Block D top floor bathrooms. Please send someone to inspect.,Plumbing
+Urgent: Bed frame wooden plank cracked in Room 502,Reporting issue: Support slat under cot has split down the center. Please send someone to inspect.,Hostel maintenance
+Issue with stagnant water breeding mosquitoes near sports ground,Attention maintenance team: Puddle of untreated rainwater behind gym pavilion has mosquito larvae.,Sanitation
+Issue with corridor floor dirty and unmopped in academic block b,Attention maintenance team: Muddy footprints and spilled coffee left uncleaned since yesterday afternoon.,Sanitation
+Issue with no water supply in chemical engineering department,Attention maintenance team: All taps and eyewash safety stations have zero water supply since 8 AM.,Plumbing
+Bicycle lock key snapped off in parking rack,"Key broke inside U-lock at Department bicycle stand, cycle cannot be unlocked.",Other
+Ceiling fan regulator broken in Room 108,The fan knob has popped out and the fan is stuck at maximum speed.,Electrical
+Issue with hostel 5 wi-fi signal extremely weak inside rooms,"Attention maintenance team: Signal is only available in the open balcony, zero reception inside dormitory rooms.",IT and Wi-Fi
+Spectrophotometer lamp burned out in Bioengineering lab,UV-Vis spectrophotometer fails self-test on deuterium lamp initialization.,Classroom and laboratory equipment
+Issue with mosquito net mesh torn on balcony door,Attention maintenance team: Large hole in protective netting allowing mosquitoes and insects inside room.,Hostel maintenance
+Issue with urinal auto-flush sensor leaking continuously,Attention maintenance team: Sensor actuated valve is stuck open wasting constant streams of water.,Plumbing
+Urgent: Garbage dumpster overflowing near Hostel Canteen,Reporting issue: Trash bags piled up outside bins attracting stray dogs and flies. Please send someone to inspect.,Sanitation
+Room door latch misaligned will not latch shut,Wood has expanded with humidity and door bolt does not enter strike plate.,Hostel maintenance
+Urgent: Microscope mechanical stage stuck in Pathology lab,Reporting issue: Fine focus knob slips and stage cannot traverse along the Y-axis. Please send someone to inspect.,Classroom and laboratory equipment
+Issue with spectrophotometer lamp burned out in bioengineering lab,Attention maintenance team: UV-Vis spectrophotometer fails self-test on deuterium lamp initialization.,Classroom and laboratory equipment
+Issue with tap broken and continuously running in hostel 3 mess,Attention maintenance team: Handwash tap valve is sheared off and water is being wasted continuously.,Plumbing
+Issue with foul odor from chemical residue trash in lab corridor,Attention maintenance team: Open disposal bags containing reagent bottles left in public hallway.,Sanitation
+Issue with streetlight not working near hostel walkway,Attention maintenance team: The path between Girls Hostel and Cafeteria is pitch dark at night due to broken light pole.,Electrical
+Firewall blocking academic Git repositories,Git clone from github and gitlab is hanging with connection refused on campus proxy.,IT and Wi-Fi
+Issue with severe water leakage in 2nd floor washroom,Attention maintenance team: Pipes beneath the central washbasin burst and water is flooding into the corridor.,Plumbing
+Urgent: Unauthorized vehicle parked blocking handicap accessibility ramp,Reporting issue: White sedan parked directly in front of wheelchair ramp at library entry. Please send someone to inspect.,Other
+Stray dogs wandering inside academic building foyer,Pack of aggressive dogs entered building through open emergency doors.,Other
+Urgent: Mosquito net mesh torn on balcony door,Reporting issue: Large hole in protective netting allowing mosquitoes and insects inside room. Please send someone to inspect.,Hostel maintenance
+Issue with low water pressure in 4th floor hostel showers,Attention maintenance team: Water barely trickles out of shower heads in Hostel Block D top floor bathrooms.,Plumbing
+Foul odor from chemical residue trash in lab corridor,Open disposal bags containing reagent bottles left in public hallway.,Sanitation
+Issue with animal waste found near entrance staircase of block d,Attention maintenance team: Dog droppings on the main entry stairs of academic block need removal.,Sanitation
+Issue with air conditioner tripping circuit breaker in seminar hall,"Attention maintenance team: As soon as AC unit 2 is turned on, the MCB trips for the entire hall.",Electrical
+Flush tank not refilling in Ground Floor Restroom,Cistern valve is stuck and will not draw water in the admin block restroom.,Plumbing
+Urgent: Campus student portal gives 504 gateway timeout,Reporting issue: Unable to register for semester electives due to gateway timeout on the portal. Please send someone to inspect.,IT and Wi-Fi
+Urgent: Oscilloscope channel 2 faulty in Electronics lab,Reporting issue: Tektronix DSO channel 2 produces distorted waveform with high offset error. Please send someone to inspect.,Classroom and laboratory equipment
+VPN access denied for off-campus research access,Remote research lab VPN gateway gives invalid certificate or handshake failure.,IT and Wi-Fi
+Corridor lights not turning on in Academic Complex,Switches on the panel do not operate the overhead lights on the west wing.,Electrical
+Issue with computer lab 1 desktop pcs cannot obtain dhcp ip,Attention maintenance team: All 30 machines in Lab 1 show unidentified network and self-assigned IP.,IT and Wi-Fi
+Issue with bed frame wooden plank cracked in room 502,Attention maintenance team: Support slat under cot has split down the center.,Hostel maintenance
+Urgent: Notice board glass broken and posters defaced,Reporting issue: Department official announcement board glass vandalized in lobby. Please send someone to inspect.,Other
+Urgent: Dampness and paint peeling off ceiling in Room 410,Reporting issue: Water seepage from upper terrace has caused plaster to fall on study desk. Please send someone to inspect.,Hostel maintenance
+Issue with ethernet port dead at desk 14 in computer lab 2,Attention maintenance team: RJ45 wall socket has no link light and does not assign IP address.,IT and Wi-Fi

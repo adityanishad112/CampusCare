@@ -1,0 +1,128 @@
+{
+  "dataset_note": "Evaluated on held-out synthetic academic complaint corpus. Note: Evaluation on synthetic data demonstrates algorithmic integrity and pipeline correctness, but does not establish real-world generalization.",
+  "test_samples_count": 52,
+  "macro_f1": 0.9489,
+  "weighted_f1": 0.9411,
+  "macro_precision": 0.961,
+  "macro_recall": 0.9524,
+  "per_category": {
+    "Classroom and laboratory equipment": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 7.0
+    },
+    "Electrical": {
+      "precision": 0.7273,
+      "recall": 1.0,
+      "f1_score": 0.8421,
+      "support": 8.0
+    },
+    "Hostel maintenance": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 7.0
+    },
+    "IT and Wi-Fi": {
+      "precision": 1.0,
+      "recall": 0.6667,
+      "f1_score": 0.8,
+      "support": 9.0
+    },
+    "Other": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 6.0
+    },
+    "Plumbing": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 8.0
+    },
+    "Sanitation": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 7.0
+    }
+  },
+  "confusion_matrix": {
+    "labels": [
+      "Classroom and laboratory equipment",
+      "Electrical",
+      "Hostel maintenance",
+      "IT and Wi-Fi",
+      "Other",
+      "Plumbing",
+      "Sanitation"
+    ],
+    "matrix": [
+      [
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        8,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        7,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        3,
+        0,
+        6,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        6,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        8,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7
+      ]
+    ]
+  }
+}
