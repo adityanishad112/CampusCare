@@ -42,7 +42,7 @@ services:
     rootDir: frontend
     envVars:
       - key: VITE_API_BASE_URL
-        value: https://campuscare-backend.onrender.com/api/v1
+        value: https://campuscare-backend-q95o.onrender.com/api/v1
     routes:
       - type: rewrite
         source: /*
