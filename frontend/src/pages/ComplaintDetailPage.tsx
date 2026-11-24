@@ -866,6 +866,81 @@ export const ComplaintDetailPage: React.FC = () => {
             </CardContent>
           </Card>
 
+          {/* AI Sentiment & ETA Insights Card */}
+          {(complaint.ai_sentiment || complaint.ai_urgency_score != null || complaint.predicted_resolution_hours != null) && (
+            <Card className="border-violet-200 bg-violet-50/20">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-xs uppercase tracking-wider text-violet-700 font-bold flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  AI Insights &amp; Analytics
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3 text-xs">
+                {complaint.ai_sentiment && (
+                  <div>
+                    <span className="text-slate-400 block text-[10px] font-semibold">SENTIMENT ANALYSIS</span>
+                    <span className={`inline-flex items-center gap-1 font-bold px-2 py-0.5 rounded text-[11px] ${
+                      complaint.ai_sentiment === "Frustrated" ? "bg-rose-100 text-rose-700" :
+                      complaint.ai_sentiment === "Urgent" ? "bg-amber-100 text-amber-700" :
+                      complaint.ai_sentiment === "Positive" ? "bg-emerald-100 text-emerald-700" :
+                      "bg-slate-100 text-slate-700"
+                    }`}>
+                      {complaint.ai_sentiment === "Frustrated" ? "😤" :
+                       complaint.ai_sentiment === "Urgent" ? "⚡" :
+                       complaint.ai_sentiment === "Positive" ? "✅" : "📋"}
+                      {complaint.ai_sentiment}
+                    </span>
+                  </div>
+                )}
+                {complaint.ai_urgency_score != null && (
+                  <div>
+                    <span className="text-slate-400 block text-[10px] font-semibold">URGENCY SCORE</span>
+                    <div className="flex items-center gap-2 mt-1">
+                      <div className="flex-1 bg-slate-200 rounded-full h-1.5">
+                        <div
+                          className={`h-1.5 rounded-full ${
+                            complaint.ai_urgency_score >= 75 ? "bg-rose-500" :
+                            complaint.ai_urgency_score >= 50 ? "bg-amber-500" : "bg-emerald-500"
+                          }`}
+                          style={{ width: `${Math.min(complaint.ai_urgency_score, 100)}%` }}
+                        />
+                      </div>
+                      <span className="font-black text-slate-700 text-[11px]">{complaint.ai_urgency_score}/99</span>
+                    </div>
+                  </div>
+                )}
+                {complaint.ai_escalation_risk && (
+                  <div>
+                    <span className="text-slate-400 block text-[10px] font-semibold">ESCALATION RISK</span>
+                    <span className={`font-bold text-[11px] ${
+                      complaint.ai_escalation_risk === "High" ? "text-rose-600" :
+                      complaint.ai_escalation_risk === "Medium" ? "text-amber-600" : "text-emerald-600"
+                    }`}>
+                      {complaint.ai_escalation_risk === "High" ? "🔴" :
+                       complaint.ai_escalation_risk === "Medium" ? "🟡" : "🟢"}{" "}
+                      {complaint.ai_escalation_risk} Risk
+                    </span>
+                  </div>
+                )}
+                {complaint.predicted_resolution_hours != null && (
+                  <div>
+                    <span className="text-slate-400 block text-[10px] font-semibold">PREDICTED ETA</span>
+                    <span className="font-bold text-slate-900">
+                      ⏱ {complaint.predicted_resolution_hours < 24
+                        ? `${complaint.predicted_resolution_hours}h`
+                        : `${(complaint.predicted_resolution_hours / 24).toFixed(1)} days`}
+                    </span>
+                    {complaint.predicted_resolution_date && (
+                      <span className="text-slate-400 ml-2 text-[10px] font-mono">
+                        (by {complaint.predicted_resolution_date})
+                      </span>
+                    )}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          )}
+
           {/* Lifecycle Stepper & Audit Log */}
           <Card>
             <CardHeader className="pb-2">

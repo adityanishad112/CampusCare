@@ -13,6 +13,7 @@ from app.schemas.auth import UserResponse
 router = APIRouter(prefix="/departments", tags=["Departments"])
 
 @router.get("/", response_model=List[DepartmentResponse])
+@router.get("", response_model=List[DepartmentResponse], include_in_schema=False)
 def get_departments(db: Session = Depends(get_db)):
     departments = db.query(Department).all()
     results = []

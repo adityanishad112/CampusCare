@@ -123,6 +123,12 @@ export interface ComplaintDetail extends ComplaintListItem {
   status_history: StatusHistory[];
   feedback?: Feedback | null;
   duplicates: DuplicateLink[];
+  // AI Enrichment Analytics
+  ai_sentiment?: string | null;
+  ai_urgency_score?: number | null;
+  ai_escalation_risk?: string | null;
+  predicted_resolution_hours?: number | null;
+  predicted_resolution_date?: string | null;
 }
 
 export interface PaginatedComplaints {
@@ -227,4 +233,34 @@ export interface MLMetricsReport {
     labels: string[];
     matrix: number[][];
   };
+}
+
+// AI Bot Instant Helpdesk
+export interface ChatAction {
+  action_type: "VIEW_TICKET" | "FILE_COMPLAINT" | "NAVIGATE" | "QUICK_REPLY" | "CALL" | string;
+  label: string;
+  payload: Record<string, any>;
+}
+
+export interface ChatMessage {
+  id: string;
+  role: "user" | "assistant" | "system";
+  content: string;
+  timestamp?: string;
+  actions?: ChatAction[];
+  suggested_replies?: string[];
+}
+
+export interface ChatResponse {
+  reply: string;
+  intent: string;
+  actions: ChatAction[];
+  suggested_replies: string[];
+  data?: Record<string, any>;
+}
+
+export interface QuickPrompt {
+  label: string;
+  query: string;
+  category: string;
 }

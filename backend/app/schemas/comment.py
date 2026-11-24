@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Optional
 from datetime import datetime
 
@@ -7,6 +7,8 @@ class CommentCreate(BaseModel):
     is_internal: bool = False  # Only staff/admin can set this to True
 
 class CommentResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     complaint_id: int
     author_id: Optional[int] = None
@@ -16,5 +18,3 @@ class CommentResponse(BaseModel):
     is_internal: bool
     created_at: datetime
 
-    class Config:
-        from_attributes = True

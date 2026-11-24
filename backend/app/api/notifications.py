@@ -12,6 +12,7 @@ from app.schemas.notification import NotificationResponse
 router = APIRouter(prefix="/notifications", tags=["Notifications"])
 
 @router.get("/", response_model=List[NotificationResponse])
+@router.get("", response_model=List[NotificationResponse], include_in_schema=False)
 def get_user_notifications(
     limit: int = 30,
     current_user: User = Depends(get_current_user),

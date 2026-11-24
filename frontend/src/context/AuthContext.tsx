@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { User, UserRole } from "../types";
 import { api } from "../services/api";
 
@@ -33,6 +33,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   });
   const [loading, setLoading] = useState<boolean>(true);
 
+  const logout = useCallback(() => {
+    setUser(null);
+    setToken(null);
+    localStorage.removeItem("campuscare_token");
+    localStorage.removeItem("campuscare_user");
+  }, []);
+
   useEffect(() => {
     const verifyAuth = async () => {
       if (token) {
@@ -47,7 +54,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setLoading(false);
     };
     verifyAuth();
-  }, []);
+  }, [token, logout]);
 
   const login = async (email: string, password: string) => {
     const res = await api.login({ email, password });
@@ -61,13 +68,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     await api.register({ email, password, full_name });
     // Automatically log in after registration
     await login(email, password);
-  };
-
-  const logout = () => {
-    setUser(null);
-    setToken(null);
-    localStorage.removeItem("campuscare_token");
-    localStorage.removeItem("campuscare_user");
   };
 
   const switchDemoUser = async (role: UserRole, deptCode?: string) => {

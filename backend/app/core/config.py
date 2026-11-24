@@ -1,9 +1,11 @@
 import os
 from typing import List
-from pydantic import field_validator
+from pydantic import ConfigDict, field_validator
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
+    model_config = ConfigDict(case_sensitive=True, env_file=".env")
+
     PROJECT_NAME: str = "CampusCare — AI-Based Campus Complaint Management System"
     VERSION: str = "1.0.0"
     API_V1_STR: str = "/api/v1"
@@ -46,16 +48,13 @@ class Settings(BaseSettings):
         if not origins:
             # Local dev defaults
             origins = [
+                "http://localhost",
                 "http://localhost:5173",
                 "http://127.0.0.1:5173",
                 "http://localhost:3000",
                 "http://127.0.0.1:3000",
             ]
         return origins
-
-    class Config:
-        case_sensitive = True
-        env_file = ".env"
 
 settings = Settings()
 os.makedirs(settings.UPLOAD_DIR, exist_ok=True)

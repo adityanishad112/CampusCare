@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Optional
 from datetime import datetime
 
@@ -18,10 +18,10 @@ class DepartmentUpdate(BaseModel):
     contact_email: Optional[str] = None
 
 class DepartmentResponse(DepartmentBase):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     created_at: datetime
     staff_count: Optional[int] = 0
     active_complaints_count: Optional[int] = 0
 
-    class Config:
-        from_attributes = True

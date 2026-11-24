@@ -1,8 +1,10 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Optional
 from datetime import datetime
 
 class AttachmentResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     complaint_id: int
     filename: str
@@ -14,5 +16,3 @@ class AttachmentResponse(BaseModel):
     download_url: Optional[str] = None
     file_url: Optional[str] = None
 
-    class Config:
-        from_attributes = True

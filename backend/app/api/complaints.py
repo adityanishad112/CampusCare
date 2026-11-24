@@ -32,6 +32,8 @@ from app.schemas.feedback import FeedbackCreate, FeedbackResponse
 from app.schemas.ml import DuplicateSuggestionResponse, DuplicateSuggestionItem, LinkDuplicateRequest
 from app.services.workflow_engine import validate_and_apply_transition, resolve_department_for_category
 from app.services.duplicate_detector import find_potential_duplicates, link_duplicate_complaints
+from app.services.ai_sentiment_service import analyze_sentiment
+from app.services.ai_eta_service import predict_resolution_eta
 
 router = APIRouter(prefix="/complaints", tags=["Complaints"])
 
@@ -64,6 +66,7 @@ def map_complaint_to_list_item(c: Complaint) -> ComplaintListItem:
     )
 
 @router.post("/", response_model=ComplaintDetail, status_code=status.HTTP_201_CREATED)
+@router.post("", response_model=ComplaintDetail, status_code=status.HTTP_201_CREATED, include_in_schema=False)
 def submit_complaint(
     request: ComplaintCreate,
     current_user: User = Depends(require_role("student", "admin")),
@@ -136,6 +139,7 @@ def submit_complaint(
     return get_complaint_detail(complaint.id, current_user, db)
 
 @router.get("/", response_model=PaginatedComplaints)
+@router.get("", response_model=PaginatedComplaints, include_in_schema=False)
 def list_complaints(
     page: int = Query(1, ge=1),
     size: int = Query(10, ge=1, le=100),
@@ -284,6 +288,15 @@ def get_complaint_detail(
             created_at=d.created_at
         ))
 
+    # AI Sentiment & Resolution ETA Enrichment
+    sentiment_data = analyze_sentiment(f"{complaint.title} {complaint.description}")
+    eta_data = predict_resolution_eta(
+        category=complaint.category,
+        priority=complaint.priority,
+        db=db,
+        department_id=complaint.department_id
+    )
+
     return ComplaintDetail(
         id=complaint.id,
         tracking_number=complaint.tracking_number,
@@ -315,7 +328,12 @@ def get_complaint_detail(
         comments=comments_resp,
         status_history=history_resp,
         feedback=feedback_resp,
-        duplicates=duplicates_resp
+        duplicates=duplicates_resp,
+        ai_sentiment=sentiment_data["sentiment"],
+        ai_urgency_score=sentiment_data["urgency_score"],
+        ai_escalation_risk=sentiment_data["escalation_risk"],
+        predicted_resolution_hours=eta_data["predicted_hours"],
+        predicted_resolution_date=eta_data["target_date"]
     )
 
 @router.post("/{complaint_id}/transition", response_model=ComplaintDetail)

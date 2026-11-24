@@ -5,7 +5,7 @@ import os
 
 from app.core.config import settings
 from app.core.database import Base, engine
-from app.api import auth, departments, complaints, analytics, ml, notifications
+from app.api import auth, departments, complaints, analytics, ml, notifications, bot
 
 # Initialize database tables
 Base.metadata.create_all(bind=engine)
@@ -36,6 +36,7 @@ app.include_router(complaints.router, prefix=settings.API_V1_STR)
 app.include_router(analytics.router, prefix=settings.API_V1_STR)
 app.include_router(ml.router, prefix=settings.API_V1_STR)
 app.include_router(notifications.router, prefix=settings.API_V1_STR)
+app.include_router(bot.router, prefix=settings.API_V1_STR)
 
 @app.get("/")
 def root():

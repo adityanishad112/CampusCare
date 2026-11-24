@@ -5,6 +5,7 @@ import { Shield, Lock, Mail, ArrowRight, Sparkles, CheckCircle2, UserCheck } fro
 import { Input } from "../components/ui/Input";
 import { Button } from "../components/ui/Button";
 import { Alert } from "../components/ui/Alert";
+import { ChatBotWidget } from "../components/bot/ChatBotWidget";
 
 export const LoginPage: React.FC = () => {
   const { login, user } = useAuth();
@@ -146,6 +147,7 @@ export const LoginPage: React.FC = () => {
           </div>
         </div>
       </div>
+      <ChatBotWidget />
     </div>
   );
 };

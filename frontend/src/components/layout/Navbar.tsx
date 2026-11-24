@@ -66,9 +66,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleSidebar }) => {
                 Demo Switcher (For Evaluation)
               </div>
               <button
-                onClick={() => {
-                  switchDemoUser("student");
+                onClick={async () => {
+                  await switchDemoUser("student");
                   setShowDemoMenu(false);
+                  navigate("/dashboard");
                 }}
                 className="w-full flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-slate-50 text-slate-700 cursor-pointer text-left"
               >
@@ -80,9 +81,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleSidebar }) => {
                 {user?.role === "student" && <Check className="w-4 h-4 text-primary" />}
               </button>
               <button
-                onClick={() => {
-                  switchDemoUser("staff", "IT");
+                onClick={async () => {
+                  await switchDemoUser("staff", "IT");
                   setShowDemoMenu(false);
+                  navigate("/staff/dashboard");
                 }}
                 className="w-full flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-slate-50 text-slate-700 cursor-pointer text-left"
               >
@@ -94,9 +96,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleSidebar }) => {
                 {user?.role === "staff" && user.department_id === 1 && <Check className="w-4 h-4 text-primary" />}
               </button>
               <button
-                onClick={() => {
-                  switchDemoUser("staff", "ELEC");
+                onClick={async () => {
+                  await switchDemoUser("staff", "ELEC");
                   setShowDemoMenu(false);
+                  navigate("/staff/dashboard");
                 }}
                 className="w-full flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-slate-50 text-slate-700 cursor-pointer text-left"
               >
@@ -107,9 +110,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onToggleSidebar }) => {
                 </div>
               </button>
               <button
-                onClick={() => {
-                  switchDemoUser("admin");
+                onClick={async () => {
+                  await switchDemoUser("admin");
                   setShowDemoMenu(false);
+                  navigate("/admin/dashboard");
                 }}
                 className="w-full flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-slate-50 text-slate-700 cursor-pointer text-left"
               >

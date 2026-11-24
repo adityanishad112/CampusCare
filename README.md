@@ -165,6 +165,23 @@ npm run dev
 #### 3. One-Click Windows Script:
 Simply double-click `start_dev.bat` in the project root directory to launch both services in separate command windows automatically.
 
+### Run the Android app in Android Studio
+
+The Android project wraps the existing React app with Capacitor; the FastAPI backend remains a separate service.
+
+1. Install Android Studio with the Android SDK and platform tools. In Android Studio's Gradle settings, select JDK 21 (or another JDK from 17 through 24); the generated Gradle wrapper is not compatible with JDK 25.
+2. The Android emulator is configured to reach the backend at `10.0.2.2:8000`. To override it, copy `frontend/.env.android.example` to `frontend/.env.android` and set `VITE_API_BASE_URL`. For a physical device, use the development computer's LAN IP and start the backend bound to `0.0.0.0` (for example, `uvicorn app.main:app --host 0.0.0.0 --reload --port 8000`); make sure both devices are on the same network.
+3. Install frontend packages and create/synchronize the Android project:
+   ```bash
+   cd frontend
+   npm install
+   npm run build:android
+   npm run android:open
+   ```
+4. Start the FastAPI backend on port `8000`, then run the `app` configuration from Android Studio.
+
+After changing frontend code or `.env.android`, run `npm run build:android` again before launching the app. The backend must be reachable from the Android device, and its `CORS_ORIGINS` setting must allow `http://localhost` (this is included in the local development defaults). Debug builds allow cleartext HTTP for local development; release builds retain Android's secure default and should use an HTTPS backend.
+
 ---
 
 ### Method 2: Docker Compose (Full Stack with PostgreSQL)

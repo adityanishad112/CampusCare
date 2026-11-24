@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">CampusCare</string>
+    <string name="title_activity_main">CampusCare</string>
+    <string name="package_name">edu.campuscare.app</string>
+    <string name="custom_url_scheme">edu.campuscare.app</string>
+</resources>

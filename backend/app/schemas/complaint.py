@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Optional, List
 from datetime import datetime
 from app.schemas.attachment import AttachmentResponse
@@ -6,6 +6,8 @@ from app.schemas.comment import CommentResponse
 from app.schemas.feedback import FeedbackResponse
 
 class StatusHistoryResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     old_status: Optional[str] = None
     new_status: str
@@ -14,9 +16,6 @@ class StatusHistoryResponse(BaseModel):
     changed_by_role: Optional[str] = None
     remarks: Optional[str] = None
     created_at: datetime
-
-    class Config:
-        from_attributes = True
 
 class ComplaintCreate(BaseModel):
     title: str = Field(..., min_length=5, max_length=200)
@@ -53,6 +52,8 @@ class AdminOverrideRequest(BaseModel):
     remarks: str = Field(..., min_length=3, max_length=500)
 
 class DuplicateLinkResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     primary_complaint_id: int
     duplicate_complaint_id: int
@@ -62,10 +63,9 @@ class DuplicateLinkResponse(BaseModel):
     notes: Optional[str] = None
     created_at: datetime
 
-    class Config:
-        from_attributes = True
-
 class ComplaintListItem(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     tracking_number: str
     title: str
@@ -86,10 +86,9 @@ class ComplaintListItem(BaseModel):
     created_at: datetime
     updated_at: datetime
 
-    class Config:
-        from_attributes = True
-
 class ComplaintDetail(ComplaintListItem):
+    model_config = ConfigDict(from_attributes=True)
+
     description: str
     suggested_category: Optional[str] = None
     priority_reason: Optional[str] = None
@@ -102,9 +101,13 @@ class ComplaintDetail(ComplaintListItem):
     status_history: List[StatusHistoryResponse] = []
     feedback: Optional[FeedbackResponse] = None
     duplicates: List[DuplicateLinkResponse] = []
-
-    class Config:
-        from_attributes = True
+    
+    # AI Enrichment Analytics
+    ai_sentiment: Optional[str] = None
+    ai_urgency_score: Optional[int] = None
+    ai_escalation_risk: Optional[str] = None
+    predicted_resolution_hours: Optional[float] = None
+    predicted_resolution_date: Optional[str] = None
 
 class PaginatedComplaints(BaseModel):
     items: List[ComplaintListItem]

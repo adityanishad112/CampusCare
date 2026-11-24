@@ -1,10 +1,15 @@
 import {
   User, Department, ComplaintDetail, PaginatedComplaints,
   Notification, AIPredictionResult, PrioritySuggestionResult,
-  DuplicateSuggestionResult, AnalyticsSummary, MLMetricsReport
+  DuplicateSuggestionResult, AnalyticsSummary, MLMetricsReport,
+  ChatResponse, QuickPrompt
 } from "../types";
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000/api/v1";
+const defaultApiBase =
+  import.meta.env.MODE === "android"
+    ? "http://10.0.2.2:8000/api/v1"
+    : "http://localhost:8000/api/v1";
+const API_BASE = import.meta.env.VITE_API_BASE_URL || defaultApiBase;
 
 class ApiClient {
   getToken(): string | null {
@@ -290,6 +295,18 @@ class ApiClient {
     if (fileUrl.startsWith("http")) return fileUrl;
     const serverBase = API_BASE.replace(/\/api\/v1\/?$/, "");
     return `${serverBase}${fileUrl}`;
+  }
+
+  // Instant AI Help Bot
+  async chatWithBot(message: string, history?: any[]) {
+    return this.request<ChatResponse>("/bot/chat", {
+      method: "POST",
+      body: JSON.stringify({ message, history }),
+    });
+  }
+
+  async getBotQuickPrompts() {
+    return this.request<{ prompts: QuickPrompt[] }>("/bot/quick-prompts");
   }
 }
 

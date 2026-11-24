@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { api } from "../services/api";
 import { AIPredictionResult, PrioritySuggestionResult } from "../types";
 import {
@@ -39,13 +39,20 @@ const LOCATION_PRESETS = [
 
 export const NewComplaintPage: React.FC = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("IT and Wi-Fi");
-  const [location, setLocation] = useState("");
-  const [priority, setPriority] = useState<"Low" | "Medium" | "High">("Medium");
-  const [priorityReason, setPriorityReason] = useState("");
+  const [title, setTitle] = useState(() => searchParams.get("title") || "");
+  const [description, setDescription] = useState(() => searchParams.get("description") || "");
+  const [category, setCategory] = useState(() => {
+    const qCat = searchParams.get("category");
+    return qCat && CATEGORIES.includes(qCat) ? qCat : "IT and Wi-Fi";
+  });
+  const [location, setLocation] = useState(() => searchParams.get("location") || "");
+  const [priority, setPriority] = useState<"Low" | "Medium" | "High">(() => {
+    const qPrio = searchParams.get("priority");
+    return (qPrio && ["Low", "Medium", "High"].includes(qPrio)) ? (qPrio as any) : "Medium";
+  });
+  const [priorityReason, setPriorityReason] = useState(() => searchParams.get("priority_reason") || "");
 
   // AI & Automation state
   const [aiPrediction, setAiPrediction] = useState<AIPredictionResult | null>(null);
